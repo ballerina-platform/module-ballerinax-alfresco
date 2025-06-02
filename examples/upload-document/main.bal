@@ -1,6 +1,4 @@
-import ballerina/http;
 import ballerinax/alfresco;
-import ballerina/mime;
 import ballerina/io;
 
 configurable string username = ?;
@@ -15,23 +13,12 @@ alfresco:Client alfrescoClient = check new ({
 }, serviceURL);
 
 
-public function main() returns CustomNodeEntry|error? {
-    mime:Entity[] bodyParts = check request.getBodyParts();
-    mime:Entity filePart = bodyParts[0];
-    byte[] fileContent = check filePart.getByteArray();
+public function main() returns error? {
+    string nodeId = "-root-";
+    string name = "hello.txt";
+    string filePath = "resources/hello.txt";
 
-    string nodeId = "";
-    string name = "";
-    foreach mime:Entity part in bodyParts {
-        mime:ContentDisposition disposition = part.getContentDisposition();
-        if disposition is mime:ContentDisposition {
-            if disposition.name == "nodeId" {
-                nodeId = check part.getText();
-            } else if disposition.name == "name" {
-                name = check part.getText();
-            }
-        }
-    }
+    byte[] fileContent = check io:fileReadBytes(filePath);
 
     alfresco:NodeBodyCreate payload = {
         name: name,
@@ -45,12 +32,12 @@ public function main() returns CustomNodeEntry|error? {
     alfresco:NodeEntry createdNode = check alfrescoClient->createNode(nodeId, payload);
     alfresco:NodeEntry alfrescoNodeEntryResult = check alfrescoClient->updateNodeContent(createdNode.entry.id, fileContent);
 
-    return {
+    io:println({
         id: alfrescoNodeEntryResult.entry.id,
         name: alfrescoNodeEntryResult.entry.name,
         createdByUser: {
             id: alfrescoNodeEntryResult.entry.createdByUser.id,
             displayName: alfrescoNodeEntryResult.entry.createdByUser.displayName
         }
-    };
+    });
 }
