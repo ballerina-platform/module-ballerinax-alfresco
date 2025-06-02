@@ -65,9 +65,10 @@ bal run
 
 ## Examples
 
-The `Alfresco` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-alfresco/tree/main/examples/), covering the following use cases:
+The `ballerinax/alfresco` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-alfresco/tree/main/examples), covering the following use cases:
 
-[//]: # (TODO: Add examples)
+1. [Upload a Document](https://github.com/ballerina-platform/module-ballerinax-alfresco/tree/main/examples/upload-document) - Create a new file in Alfresco and upload content to it under a specific folder or path.
+2. [Download a Document](https://github.com/ballerina-platform/module-ballerinax-alfresco/tree/main/examples/download-document) - Retrieve a document stored in Alfresco.
 
 ## Build from the source
 
