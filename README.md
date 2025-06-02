@@ -6,9 +6,11 @@
 
 ## Overview
 
-This is a generated connector for [Alfresco](https://api-explorer.alfresco.com/api-explorer/) OpenAPI specification. 
+This is a generated connector for [Alfresco](https://api-explorer.alfresco.com/api-explorer/) OpenAPI specification.
 
-This Alfresco Content Services REST APIs enable you to access to the core features of Alfresco Content Services.
+[Alfresco](https://www.hyland.com/en/solutions/products/alfresco-platform) is a modern, open-source content management platform that enables organizations to manage enterprise documents, digital assets, and records with efficiency and control. Known for its scalability and compliance-ready architecture, Alfresco provides powerful capabilities such as document storage, versioning, collaboration, workflow automation, and access control. It is widely used across industries to centralize content operations, streamline business processes, and support digital transformation initiatives.
+
+The `ballerinax/alfresco` connector offers APIs to connect and interact with the [Alfresco endpoints](https://docs.alfresco.com/content-services/6.0/develop/rest-api-guide/), specifically based on the [Alfresco REST API Version 1](https://api-explorer.alfresco.com/api-explorer/). This connector allows Ballerina applications to perform core content operations such as uploading and downloading files, managing nodes and folders, setting metadata, and handling permissions. By using the Ballerina Alfresco Connector, developers can easily integrate content services into their workflows and build automation solutions that leverage the full capabilities of the Alfresco platform.
 
 ## Setup guide
 
