@@ -35,7 +35,7 @@ Create a `alfresco:ConnectionConfig` using the Basic Authentication credentials 
 ```ballerina
 configurable string username = ?;
 configurable string password = ?;
-configurable string serviceURL = ?;
+configurable string serviceUrl = ?;
 
 alfresco:ConnectionConfig alfrescoConfig = {
     auth: {
@@ -43,7 +43,7 @@ alfresco:ConnectionConfig alfrescoConfig = {
         password
     }
 };
-alfresco:Client alfresco = check new (alfrescoConfig, serviceURL);
+alfresco:Client alfresco = check new (alfrescoConfig, serviceUrl);
 ```
 
 ### Step 3: Invoke connector operation

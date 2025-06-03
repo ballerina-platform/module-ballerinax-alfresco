@@ -1,5 +1,5 @@
 [package]
-org = "sachink"
+org = "wso2"
 name = "upload_document"
 version = "0.1.0"
 distribution = "2201.12.5"

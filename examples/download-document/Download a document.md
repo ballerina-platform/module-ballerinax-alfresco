@@ -16,7 +16,7 @@ Update your Alfresco account-related configurations in the `Config.toml` file in
 ```toml
 username="<username>"
 password="<password>"
-serviceURL="<serviceURL>"
+serviceUrl="<serviceUrl>"
 nodeId="<nodeId>"
 ```
 

@@ -13,7 +13,7 @@ The `ballerinax/alfresco` connector provides practical examples illustrating usa
 ```toml
 username="<username>"
 password="<password>"
-serviceURL="<serviceURL>"
+serviceUrl="<serviceUrl>"
 ```
 
 ## Running an example
