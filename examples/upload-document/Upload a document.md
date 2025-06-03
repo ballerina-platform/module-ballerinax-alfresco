@@ -6,8 +6,7 @@ This example demonstrates how Alfresco REST API v1 can be utilized to create a n
 
 ### 1. Setup Alfresco account
 
-Refer to the [Setup guide](https://central.ballerina.io/ballerinax/alfresco/latest#setup-guide) to set up your Alfresco
-environment, if you do not have one.
+Refer to the [Setup guide](https://central.ballerina.io/ballerinax/alfresco/latest#setup-guide) to set up your Alfresco environment, if you do not have one.
 
 ### 2. Configuration
 

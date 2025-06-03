@@ -31,7 +31,7 @@ alfresco:Client alfrescoClient = check new ({
 
 
 public function main() returns error? {
-    byte[]|() fileContent = check alfrescoClient->getNodeContent(nodeId);
+    byte[]? fileContent = check alfrescoClient->getNodeContent(nodeId);
     if fileContent is () {
         return error("No content found for nodeId");
     }
