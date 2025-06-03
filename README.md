@@ -16,7 +16,7 @@ Before using this connector in your Ballerina application, complete the followin
 
 * Create an [Alfresco Account](https://www.alfresco.com/try-alfresco-acs).
 * Once registered, you will receive an email with instructions to set up your Alfresco environment, including the default username and password. Use these credentials to access the Alfresco Content Services API.
-* Note: This connector only supports Basic Authentication (username/password) and does not require or support bearer tokens.
+> **Note:** This connector only supports Basic Authentication (username/password) and does not require or support bearer tokens.
 
 ## Quickstart
 
@@ -33,7 +33,7 @@ Create a `alfresco:ConnectionConfig` using the Basic Authentication credentials 
 ```ballerina
 configurable string username = ?;
 configurable string password = ?;
-configurable string serviceURL = ?;
+configurable string serviceUrl = ?;
 
 alfresco:ConnectionConfig alfrescoConfig = {
     auth: {
@@ -41,7 +41,7 @@ alfresco:ConnectionConfig alfrescoConfig = {
         password
     }
 };
-alfresco:Client alfresco = check new (alfrescoConfig, serviceURL);
+alfresco:Client alfresco = check new (alfrescoConfig, serviceUrl);
 ```
 
 ### Step 3: Invoke connector operation
