@@ -21,14 +21,14 @@ listener http:Listener mockAlfresco = new (9090);
 
 service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
     // Mock createNode endpoint
-    resource function post nodes/[string parentId]/children(http:Request request) returns http:Response|error {
+    resource function post nodes/[string parentId]/children(http:Request request) returns NodeEntry|error {
         json payload = check request.getJsonPayload();
         if payload is () {
             return error("Invalid JSON payload in createNode");
         }
         NodeBodyCreate node = check payload.cloneWithType(NodeBodyCreate);
 
-        json responsePayload = {
+        return {
             "entry": {
                 "id": "mock-node-id",
                 "name": node.name,
@@ -47,32 +47,26 @@ service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
                 }
             }
         };
-
-        http:Response response = new;
-        response.setJsonPayload(responsePayload);
-        return response;
     }
 
     // Mock updateNodeContent endpoint
-    resource function put nodes/[string nodeId]/content(http:Request request) returns http:Response {
-        http:Response response = new;
-
+    resource function put nodes/[string nodeId]/content(http:Request request) returns NodeEntry|http:NotFound {
+        
         if nodeId == "invalid-node" {
-            response.statusCode = 404;
-            json errorPayload = {
-                "error": {
-                    "errorKey": "framework.exception.EntityNotFound",
-                    "statusCode": 404,
-                    "briefSummary": "The node could not be found",
-                    "stackTrace": "For security reasons the stack trace is no longer displayed",
-                    "descriptionURL": "https://api-explorer.alfresco.com"
+            return {
+                body: {
+                    "error": {
+                        "errorKey": "framework.exception.EntityNotFound",
+                        "statusCode": 404,
+                        "briefSummary": "The node could not be found",
+                        "stackTrace": "For security reasons the stack trace is no longer displayed",
+                        "descriptionURL": "https://api-explorer.alfresco.com"
+                    }
                 }
             };
-            response.setJsonPayload(errorPayload);
-            return response;
         }
 
-        json successPayload = {
+        return {
             "entry": {
                 "id": nodeId,
                 "name": "test.txt",
@@ -91,8 +85,6 @@ service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
                 }
             }
         };
-        response.setJsonPayload(successPayload);
-        return response;
     }
 
     // Mock getNodeContent endpoint
