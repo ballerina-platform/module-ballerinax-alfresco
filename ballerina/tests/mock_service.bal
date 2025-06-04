@@ -15,7 +15,6 @@
 // under the License.
 
 import ballerina/http;
-import ballerina/test;
 
 // Mock Alfresco server
 listener http:Listener mockAlfresco = new (9090);
@@ -64,35 +63,20 @@ service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
     }
 
     // Mock getNodeContent endpoint
-    resource function get nodes/[string nodeId]/content(http:Request request) returns http:Response {
-        http:Response response = new;
-
+    resource function get nodes/[string nodeId]/content(http:Request request) returns byte[]|http:NotFound {
         if nodeId == "invalid-node" {
-            response.statusCode = 404;
-            json errorPayload = {
-                "error": {
-                    "errorKey": "framework.exception.EntityNotFound",
-                    "statusCode": 404,
-                    "briefSummary": "The node could not be found",
-                    "stackTrace": "For security reasons the stack trace is no longer displayed",
-                    "descriptionURL": "https://api-explorer.alfresco.com"
+            return {
+                body: {
+                    "error": {
+	                    "errorKey": "framework.exception.EntityNotFound",
+	                    "statusCode": 404,
+	                    "briefSummary": "The node could not be found",
+	                    "stackTrace": "For security reasons the stack trace is no longer displayed",
+	                    "descriptionURL": "https://api-explorer.alfresco.com"
+	                }
                 }
             };
-            response.setJsonPayload(errorPayload);
-            return response;
         }
-
-        response.setBinaryPayload(TEST_CONTENT_BYTES);
-        return response;
+        return TEST_CONTENT_BYTES;
     }
-}
-
-@test:BeforeSuite
-function startMockServer() returns error? {
-    check mockAlfresco.'start();
-}
-
-@test:AfterSuite
-function stopMockServer() returns error? {
-    check mockAlfresco.gracefulStop();
 }
