@@ -52,7 +52,7 @@ service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
         response.setJsonPayload(responsePayload);
         return response;
     }
-    
+
     // Mock updateNodeContent endpoint
     resource function put nodes/[string nodeId]/content(http:Request request) returns http:Response {
         http:Response response = new;

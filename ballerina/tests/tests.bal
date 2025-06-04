@@ -55,7 +55,6 @@ function initializeClientsForAlfrescoServer() returns error? {
 }
 function testCreateNode() returns error? {
     NodeEntry createdNode = check alfresco->createNode(nodeId = TEST_NODE_ID, payload = TEST_PAYLOAD);
-    
     test:assertEquals(createdNode.entry.name, TEST_PAYLOAD.name, "CreateNode Failed: Name mismatch");
     test:assertEquals(createdNode.entry.nodeType, TEST_PAYLOAD.nodeType, "CreateNode Failed: NodeType mismatch");
     test:assertEquals(createdNode.entry.isFolder, false, "CreateNode Failed: isFolder should be false");
