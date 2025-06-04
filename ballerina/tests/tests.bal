@@ -14,8 +14,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/test;
 import ballerina/os;
+import ballerina/test;
 
 configurable boolean isTestOnLiveServer = os:getEnv("IS_TEST_ON_LIVE_SERVER") == "true";
 

@@ -20,7 +20,7 @@ import ballerina/test;
 // Mock Alfresco server
 listener http:Listener mockAlfresco = new (9090);
 
-service /alfresco/api/\-default\-/'public/alfresco/versions/'1  on mockAlfresco {
+service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
     // Mock updateNodeContent endpoint
     resource function put nodes/[string nodeId]/content(http:Request request) returns http:Response {
         http:Response response = new;
