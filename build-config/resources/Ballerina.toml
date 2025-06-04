@@ -5,8 +5,8 @@ name = "alfresco"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
-# icon = "icon.png" # TODO: Add icon
+keywords = ["Alfresco", "Content Management", "Document Management", "ECM", "DMS"]
+icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-alfresco"
 
 [build-options]
