@@ -20,6 +20,39 @@ import ballerina/http;
 listener http:Listener mockAlfresco = new (9090);
 
 service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
+    // Mock createNode endpoint
+    resource function post nodes/[string parentId]/children(http:Request request) returns http:Response|error {
+        json payload = check request.getJsonPayload();
+        if payload is () {
+            return error("Invalid JSON payload in createNode");
+        }
+        NodeBodyCreate node = check payload.cloneWithType(NodeBodyCreate);
+
+        json responsePayload = {
+            "entry": {
+                "id": "mock-node-id",
+                "name": node.name,
+                "nodeType": node.nodeType,
+                "isFolder": false,
+                "isFile": true,
+                "modifiedAt": "2025-01-01T00:00:00.000Z",
+                "modifiedByUser": {
+                    "id": "admin",
+                    "displayName": "Administrator"
+                },
+                "createdAt": "2025-01-01T00:00:00.000Z",
+                "createdByUser": {
+                    "id": "admin",
+                    "displayName": "Administrator"
+                }
+            }
+        };
+
+        http:Response response = new;
+        response.setJsonPayload(responsePayload);
+        return response;
+    }
+    
     // Mock updateNodeContent endpoint
     resource function put nodes/[string nodeId]/content(http:Request request) returns http:Response {
         http:Response response = new;
@@ -68,12 +101,12 @@ service /alfresco/api/\-default\-/'public/alfresco/versions/'1 on mockAlfresco {
             return {
                 body: {
                     "error": {
-	                    "errorKey": "framework.exception.EntityNotFound",
-	                    "statusCode": 404,
-	                    "briefSummary": "The node could not be found",
-	                    "stackTrace": "For security reasons the stack trace is no longer displayed",
-	                    "descriptionURL": "https://api-explorer.alfresco.com"
-	                }
+                        "errorKey": "framework.exception.EntityNotFound",
+                        "statusCode": 404,
+                        "briefSummary": "The node could not be found",
+                        "stackTrace": "For security reasons the stack trace is no longer displayed",
+                        "descriptionURL": "https://api-explorer.alfresco.com"
+                    }
                 }
             };
         }

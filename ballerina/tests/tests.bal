@@ -27,6 +27,14 @@ configurable string alfrescoUrl = isTestOnLiveServer ? os:getEnv("SERVICE_URL") 
 // Common test data
 final string TEST_NODE_ID = "test-node-id";
 final string TEST_CONTENT = "Test content";
+final NodeBodyCreate TEST_PAYLOAD = {
+    name: "test.txt",
+    nodeType: "cm:content",
+    aspectNames: ["cm:titled"],
+    properties: {
+        "cm:title": "test.txt"
+    }
+};
 final byte[] TEST_CONTENT_BYTES = TEST_CONTENT.toBytes();
 
 Client alfresco = test:mock(Client);
@@ -40,6 +48,18 @@ function initializeClientsForAlfrescoServer() returns error? {
         }
     };
     alfresco = check new (config, alfrescoUrl);
+}
+
+@test:Config {
+    groups: ["mock_tests", "live_tests"]
+}
+function testCreateNode() returns error? {
+    NodeEntry createdNode = check alfresco->createNode(nodeId = TEST_NODE_ID, payload = TEST_PAYLOAD);
+    
+    test:assertEquals(createdNode.entry.name, TEST_PAYLOAD.name, "CreateNode Failed: Name mismatch");
+    test:assertEquals(createdNode.entry.nodeType, TEST_PAYLOAD.nodeType, "CreateNode Failed: NodeType mismatch");
+    test:assertEquals(createdNode.entry.isFolder, false, "CreateNode Failed: isFolder should be false");
+    test:assertEquals(createdNode.entry.isFile, true, "CreateNode Failed: isFile should be true");
 }
 
 @test:Config {
