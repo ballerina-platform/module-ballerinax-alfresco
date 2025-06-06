@@ -2,11 +2,11 @@
 distribution = "2201.12.0"
 org = "ballerinax"
 name = "alfresco"
-version = "2.0.0"
+version = "2.0.1"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
-# icon = "icon.png" # TODO: Add icon
+keywords = ["Alfresco", "Content Management", "Document Management", "ECM", "DMS"]
+icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-alfresco"
 
 [build-options]
