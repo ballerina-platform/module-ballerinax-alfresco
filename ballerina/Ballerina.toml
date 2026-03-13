@@ -2,10 +2,10 @@
 distribution = "2201.12.0"
 org = "ballerinax"
 name = "alfresco"
-version = "2.0.1"
+version = "2.0.2"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["Content Management", "Document Management", "ECM", "DMS", "Vendor/Alfresco", "Area/Documents", "Type/Connector"]
+keywords = ["Content & Files/Document Management", "Cost/Freemium", "Vendor/Alfresco", "Area/Storage & File Management", "Type/Connector"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-alfresco"
 
